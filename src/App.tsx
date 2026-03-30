@@ -54,7 +54,7 @@ const Navbar = () => {
             <Snowflake className="text-white w-6 h-6" />
           </div>
           <span className={cn(
-            "text-xl font-bold tracking-tight",
+            "text-xl font-bold tracking-tight whitespace-nowrap",
             isScrolled ? "text-slate-900" : "text-white"
           )}>
             Heating <span className="text-blue-500">Klimatizacije</span>
@@ -149,10 +149,8 @@ const Hero = () => {
             <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
             <span className="text-blue-400 text-xs font-bold uppercase tracking-wider">Dostupni 24/7 za hitne intervencije</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-6">
-            Brza i pouzdana <br />
-            <span className="text-blue-500">ugradnja i servis</span> <br />
-            klimatizacije
+          <h1 className="text-4xl md:text-7xl font-extrabold text-white leading-[1.1] mb-6">
+            Brza i pouzdana <span className="text-blue-500">ugradnja i servis</span> klimatizacije
           </h1>
           <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed">
             Profesionalna rešenja za grejanje i hlađenje vašeg doma ili poslovnog prostora. 
@@ -276,12 +274,12 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex overflow-x-auto pb-8 gap-6 md:grid md:grid-cols-2 lg:grid-cols-4 snap-x snap-mandatory no-scrollbar">
           {services.map((service, idx) => (
             <motion.div
               key={idx}
               whileHover={{ y: -10 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 border border-slate-100 group"
+              className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 border border-slate-100 group min-w-[280px] md:min-w-0 snap-center"
             >
               <div className={cn("h-48 overflow-hidden relative flex items-center justify-center", service.color)}>
                 <div className="absolute inset-0 bg-blue-900/5 group-hover:bg-blue-900/0 transition-colors" />
@@ -403,7 +401,7 @@ const Testimonials = () => {
           <h3 className="text-4xl md:text-5xl font-extrabold text-slate-900">Šta kažu o nama</h3>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="flex overflow-x-auto pb-8 gap-6 md:grid md:grid-cols-3 snap-x snap-mandatory no-scrollbar">
           {reviews.map((review, idx) => (
             <motion.div
               key={idx}
@@ -411,7 +409,7 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
-              className="bg-slate-50 p-10 rounded-3xl border border-slate-100 relative"
+              className="bg-slate-50 p-10 rounded-3xl border border-slate-100 relative min-w-[300px] md:min-w-0 snap-center"
             >
               <div className="flex gap-1 mb-6">
                 {[...Array(review.rating)].map((_, i) => (
@@ -459,9 +457,9 @@ const Process = () => {
           {/* Connector Line */}
           <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-blue-200 -translate-y-1/2 z-0" />
           
-          <div className="grid lg:grid-cols-4 gap-12 relative z-10">
+          <div className="flex overflow-x-auto pb-8 gap-12 lg:grid lg:grid-cols-4 relative z-10 snap-x snap-mandatory no-scrollbar">
             {steps.map((step, idx) => (
-              <div key={idx} className="text-center group">
+              <div key={idx} className="text-center group min-w-[240px] lg:min-w-0 snap-center">
                 <div className="w-20 h-20 bg-white rounded-3xl shadow-xl border border-slate-100 flex items-center justify-center text-blue-600 mx-auto mb-8 transition-all duration-300 group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110">
                   {React.cloneElement(step.icon as React.ReactElement, { size: 32 })}
                 </div>
@@ -737,7 +735,7 @@ export default function App() {
       <Footer />
       <StickyCTA />
 
-      {/* Global CSS for subtle bounce */}
+      {/* Global CSS for subtle bounce and custom scrollbar */}
       <style>{`
         @keyframes bounce-subtle {
           0%, 100% { transform: translateY(0); }
@@ -745,6 +743,13 @@ export default function App() {
         }
         .animate-bounce-subtle {
           animation: bounce-subtle 3s infinite ease-in-out;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
