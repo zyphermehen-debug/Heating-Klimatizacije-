@@ -1,0 +1,7 @@
+{
+  "name": "Heating Klimatizacije - Premium HVAC Rešenja",
+  "description": "Profesionalna ugradnja, servis i održavanje klima uređaja i sistema grejanja. Brza i pouzdana usluga za vaš dom ili poslovni prostor.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
